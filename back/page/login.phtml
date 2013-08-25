@@ -1,0 +1,36 @@
+<style type="text/css">
+	.login h1 { text-align: center; }
+	.login-form { margin: 50px auto; width: 500px; }
+	.login .alert { padding: 5px 35px 5px 15px; }
+
+	.login-form .controls { border: 1px solid #C0C0C0; padding: 20px 10px; }
+	.login-form legend { 
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		background: #408080;
+		border-bottom: none;
+		color: #ffffff; 
+		margin: 0; 
+		padding: 10px; 
+	}
+</style>
+<div class="container login">
+	<h1><i class="icon-info-sign icon-4x"></i><br>JLDMP ADMIN</h1>
+	<section class="login-form">
+		<form action="/login" method="post">
+			<fieldset>
+				<legend>Login</legend>
+				<div class="controls">
+					<?php echo isset($message) ? '<div class="alert">'.$message.'</div>': ''; ?>
+					<div class="form-group">
+						<input type="text" class="form-control" name="email" placeholder="Username" value="<?php echo isset($email) ? $email : ''; ?>" autofocus>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="password" placeholder="Password">
+					</div>
+					<input type="submit" name="login" class="btn btn-default" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+	</section>
+</div>

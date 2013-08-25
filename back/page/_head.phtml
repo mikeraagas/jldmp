@@ -1,0 +1,25 @@
+<div class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<a class="navbar-brand" href="#">JLDMP</a>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/">Dashboard</a></li>
+			<li><a href="/ministry/list">Ministry</a></li>
+			<li><a href="#">Articles</a></li>
+			<li><a href="#">Updates</a></li>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			<?php $name = explode(' ', $_SESSION['admin_name']); ?>
+			<li><a href="#">Welcome <?php echo ucfirst($name[0]); ?></a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="icon-user"></i> 
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#"><i class="icno-gear"></i> Account Settings</a></li>
+					<li><a href="/logout"><i class="icon-signout"></i> Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
