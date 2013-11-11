@@ -1,0 +1,47 @@
+<div class="panel panel-primary">
+	<div class="panel-heading clearfix">
+		<span>Members</span>
+		<a href="/ministry/member/create/<?php echo $ministry['ministry_id']; ?>" 
+			class="btn btn-success btn-sm pull-right">
+			<i class="icon-plus-sign"></i> &nbsp;Create Member
+		</a>
+	</div>
+	<div class="panel-body">
+
+		<?php if(empty($members)): ?>
+			<p>There are no members yet.</p>
+		<?php else: ?>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Email</th>
+						<th>Address</th>
+						<th>Action</th>
+					</tr>	
+				</thead>
+				<tbody>
+					<?php foreach($members as $member): ?>
+						<tr>
+							<td><?php echo $member['member_first']; ?> <?php echo $member['member_last'] ?></td>
+							<td><?php echo $member['member_age']; ?></td>
+							<td><?php echo $member['member_email']; ?></td>
+							<td><?php echo $member['member_address']; ?></td>
+							<td>
+								<a href="#edit" data-id="<?php echo $member['member_id']; ?>" 
+									class="btn btn-info btn-sm edit-member" data-toggle="modal">
+									<i class="icon-pencil"></i> &nbsp;Edit
+								</a>
+								<a href="/ministry/member/action/delete/<?php echo $ministry['ministry_id']; ?>?id=<?php echo $member['member_id']; ?>"
+									class="btn btn-danger btn-sm delete-member" data-id="<?php echo $member['member_id']; ?>">
+									<i class="icon-trash"></i> &nbsp;Delete
+								</a>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php endif; ?>
+	</div>
+</div>

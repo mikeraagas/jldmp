@@ -14,7 +14,7 @@ class Back_Page_Ministry_Create extends Back_Page {
 	/* Protected Properties
 	-------------------------------*/
 	protected $_title = 'Eden';
-	protected $_class = 'home';
+	protected $_class = 'ministry';
 	protected $_template = '/ministry/create.phtml';
 	protected $_message = '';
 
@@ -47,8 +47,8 @@ class Back_Page_Ministry_Create extends Back_Page {
 					'ministry_created' 	=> $date,
 					'ministry_updated' 	=> $date);
 
-				back()->database()->insertRow('ministry', $settings);
-				header('Location: /ministry/upload/logo');
+				$this->_db->insertRow('ministry', $settings);
+				header('Location: /ministry/list');
 				exit;
 			}
 

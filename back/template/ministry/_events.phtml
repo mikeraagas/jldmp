@@ -1,0 +1,48 @@
+<div class="panel panel-primary">
+	<div class="panel-heading clearfix">
+		<span>Events</span>
+		<a href="/ministry/event/create/<?php echo $ministry['ministry_id']; ?>" 
+			class="btn btn-success btn-sm pull-right">
+			<i class="icon-plus-sign"></i> &nbsp;Create Event
+		</a>
+	</div>
+	<div class="panel-body">
+		<?php if(empty($events)): ?>
+			<p>There are no events yet.</p>
+		<?php else: ?>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Detail</th>
+						<th>Active</th>
+						<th>Action</th>
+					</tr>	
+				</thead>
+				<tbody>
+					<?php foreach($events as $event): ?>
+						<tr>
+							<td>
+								<a href="/ministry/event/detail/<?php echo $ministry['ministry_id']; ?>?id=<?php echo $event['event_id']; ?>">
+									<?php echo $event['event_title']; ?>
+								</a>
+							</td>
+							<td width="400"><?php echo substr($event['event_detail'], 0, 70).'...'; ?></td>
+							<td><?php echo ($event['event_active'] == 1) ? 'Active' : 'Not Active'; ?></td>
+							<td>
+								<a href="#edit" data-id="<?php echo $event['event_id']; ?>" 
+									class="btn btn-info btn-sm edit-update" data-toggle="modal">
+									<i class="icon-pencil"></i> &nbsp;Edit
+								</a>
+								<a href="/ministry/updates/action/delete/<?php echo $ministry['ministry_id']; ?>?id=<?php echo $event['event_id']; ?>"
+									class="btn btn-danger btn-sm delete-update" data-id="<?php echo $event['event_id']; ?>">
+									<i class="icon-trash"></i> &nbsp;Delete
+								</a>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php endif; ?>
+	</div>
+</div>

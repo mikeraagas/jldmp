@@ -1,0 +1,62 @@
+<style type="text/css">
+	.list section.header hr { clear: both; }
+	.list section.header a { margin-top: 20px; }
+</style>
+<div class="container list">
+	<section class="header">
+		<h2 class="pull-left">Parish Ministry <small>admin</small></h2>
+		<a href="/ministry/create" class="btn btn-success pull-right"><i class="icon-plus-sign"></i> Create Ministry</a>
+		<hr>
+	</section>
+	<section class="main">
+		<div class="panel panel-primary">
+			<div class="panel-heading clearfix"><h5>Ministry List</h5></div>
+			<div class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Ministry</th>
+							<th>Description</th>
+							<th>Updated</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach($ministries as $ministry): ?>
+						<tr>
+							<td><?php echo $ministry['ministry_id']; ?></td>
+							<td width="150">
+								<a href="/ministry/detail/profile/<?php echo $ministry['ministry_id']; ?>">
+									<?php echo $ministry['ministry_name']; ?>
+								</a>
+							</td>
+							<td><?php echo $ministry['ministry_excerpt']; ?></td>
+							<td width="100"><?php echo $ministry['ministry_updated']; ?></td>
+							<td width="200">
+								<a href="/ministry/detail/profile/<?php echo $ministry['ministry_id']; ?>" class="btn btn-info btn-sm">View</a>
+								<a href="/ministry/update/<?php echo $ministry['ministry_id']; ?>" class="btn btn-primary btn-sm">
+									<span class="glyphicon glyphicon-star"></span>Edit
+								</a>
+								<a href="/ministry/list?action=remove&id=<?php echo $ministry['ministry_id']; ?>" class="btn btn-danger btn-sm remove-ministry">Delete</a>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// remove ministry confirmation
+		$('a.remove-ministry').click(function(){
+			if (confirm('Are you sure? This will permanently delete the ministry.')) {
+				return true;
+			};
+
+			return false;
+		});
+	});
+</script>

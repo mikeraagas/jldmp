@@ -22,6 +22,7 @@ abstract class Back_Page extends Eden_Class {
 	protected $_body 	= array();
 	protected $_foot 	= array();
 	
+	protected $_db 			= NULL;
 	protected $_title 		= NULL;
 	protected $_class 		= NULL;
 	protected $_template 	= NULL;
@@ -46,7 +47,11 @@ abstract class Back_Page extends Eden_Class {
 		
 		return $output;
 	}
-	
+
+	public function __construct() {
+		$this->_db = back()->getDatabase();
+	}
+
 	/* Public Methods
 	-------------------------------*/
 	/**
@@ -60,6 +65,8 @@ abstract class Back_Page extends Eden_Class {
 	-------------------------------*/
 	protected function _page() {
 		$this->_head['page'] = $this->_class;
+		$tpl = back()->path('template');
+		$page = back()->path('page');
 
 		if ($this->_class == 'back-page-login') {
 			if (isset($_SESSION['admin_id'])) {
@@ -67,22 +74,20 @@ abstract class Back_Page extends Eden_Class {
 				exit;
 			}
 
-			$page = back()->path('page');
-			$body = back()->trigger('body')->template($page.$this->_template, $this->_body);
+			$body = back()->trigger('body')->template($tpl.$this->_template, $this->_body);
 		} else {
 			if (!isset($_SESSION['admin_id'])) {
 				header('Location: /login');
 				exit;
 			}
 
-			$page = back()->path('page');
-			$head = back()->trigger('head')->template($page.'/_head.phtml', $this->_head);
-			$body = back()->trigger('body')->template($page.$this->_template, $this->_body);
-			$foot = back()->trigger('foot')->template($page.'/_foot.phtml', $this->_foot);
+			$head = back()->trigger('head')->template($tpl.'/_head.phtml', $this->_head);
+			$body = back()->trigger('body')->template($tpl.$this->_template, $this->_body);
+			$foot = back()->trigger('foot')->template($tpl.'/_foot.phtml', $this->_foot);
 		}
 		
 		//page
-		return back()->template($page.'/_page.phtml', array(
+		return back()->template($tpl.'/_page.phtml', array(
 			'meta' 			=> $this->_meta,
 			'title'			=> $this->_title,
 			'class'			=> $this->_class,

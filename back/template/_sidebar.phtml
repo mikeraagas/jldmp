@@ -1,0 +1,10 @@
+<section class="col-lg-3 side-bar">
+	<div class="list-group">
+		<a href="/ministry/detail/profile/<?php echo $ministry['ministry_id'] ?>" 
+			class="list-group-item <?php echo ($section == 'profile') ? 'active' : ''; ?>">Profile</a>
+		<a href="/ministry/detail/members/<?php echo $ministry['ministry_id'] ?>" 
+			class="list-group-item <?php echo ($section == 'members') ? 'active' : ''; ?>">Members</a>
+		<a href="/ministry/detail/updates/<?php echo $ministry['ministry_id'] ?>" 
+			class="list-group-item <?php echo ($section == 'events') ? 'active' : ''; ?>">Events</a>
+	</div>
+</section>

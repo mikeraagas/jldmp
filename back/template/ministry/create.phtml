@@ -1,0 +1,25 @@
+<style type="text/css">
+	.create .header hr { clear: both; }
+	.create .alert { padding: 10px 35px 10px 15px; }
+</style>
+<div class="container create">
+	<section class="header">
+		<h2 class="pull-left">Create Ministry <small>admin</small></h2><hr>
+	</section>
+	<section class="main">
+		<form action="/ministry/create" method="post"> 
+			<fieldset>
+				<?php echo isset($message) ? '<div class="alert">'.$message.'</div>': ''; ?>
+				<div class="form-group">
+					<label for="inputName">Name</label>
+					<input type="text" class="form-control" name="name" id="inputName" placeholder="Ministry Name" autofocus>
+				</div>
+				<div class="form-group">
+					<label for="inputDescription">Description</label>
+					<textarea name="description" class="form-control" name="description" id="inputDescription" rows="10" placeholder="Ministry Exerpt"></textarea>
+				</div>
+				<input type="submit" class="btn btn-primary pull-right" name="create" value="Submit">
+			</fieldset>
+		</form>
+	</section>
+</div>
