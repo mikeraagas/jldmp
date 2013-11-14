@@ -1,0 +1,14 @@
+/*-----------------------------GENERAL------------------------------------*/
+.clear { clear: both; }
+
+
+/*-----------------------------MINISTRY------------------------------------*/
+
+/*list*/
+.list .main .panel-heading h5 { margin: 5px 0; }
+
+/*create*/
+.create .alert { padding: 10px 35px 10px 15px; }
+
+/*update*/
+.update .header .back { margin-top: 20px; }

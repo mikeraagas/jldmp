@@ -176,6 +176,7 @@ class Back extends Eden {
 			->set('path', 'config', 	$this->_root.'/config')
 			->set('path', 'theme', 		$this->_root.'/theme')
 			->set('path', 'page', 		$this->_root.'/back/page')
+			->set('path', 'template', 	$this->_root.'/back/template')
 			->set('path', 'library', 	$this->_root.'/library')
 			->set('path', 'web', 		$this->_root.'/web');
 		
@@ -375,6 +376,20 @@ class Back extends Eden {
 			->set('message', $message)
 			->parsePhp(dirname(__FILE__).'/back/error.phtml');
 	}
+
+	/**
+	 * Returns the default database instance
+	 *
+	 * @return Eden_Database_Abstract
+	 */
+	public function getDatabase($key = NULL) {
+		if(is_null($key)) {
+			//return the default database
+			return $this->_database;
+		}
+		
+		return $this->_registry->get('database', $key);
+	}
 	
 	/* Protected Methods
 	-------------------------------*/
@@ -409,7 +424,7 @@ class Back extends Eden {
 		
 		return $variables;
 	}
-	
+
 	/* Private Methods
 	-------------------------------*/
 }

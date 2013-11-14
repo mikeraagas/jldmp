@@ -1,40 +1,30 @@
 /*-----------------------------FONT------------------------------------*/
 @font-face {
 	font-family: 'Myriad Pro';
-	src: url('assets/font/Myriad.ttf');
+	src: url('assets/fonts/Myriad.ttf');
 }
 
 /*-----------------------------GENERAL------------------------------------*/
 html, body {
-	font-family: 'Myriad Pro';
+	background: url('/assets/img/bg_subtle.png');
+	/*font-family: 'Myriad Pro';*/
 	height: 100%;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 }
 
-.background {
-	height: 400px;
-	min-height: 50%;
-	min-width: 1024px;
-	width: 100%;
-	z-index: -999;
-	position: fixed;
-	top: 0;
-	left: 0;
-}
-
-.page {
-	width: 960px;
-	margin: 0 auto;
-}
-
-
 /*-----------------------------HEADER------------------------------------*/
-.head { color: #ffffff; overflow: hidden; height: 80px; }
-.head .logo { float: left; }
+.head { background: url('/assets/img/header_bg.png'); border-bottom: 1px solid #272727;  }
+.head .header {
+	height: 100px;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 960px;
+}
+.head .logo { color: #ffffff; float: left; }
 .head .logo h1 { margin-bottom: 0; }
-.head .logo p { margin: 0; }
+.head .logo p { margin: 0; text-transform: uppercase; }
 
 .head .navigation { float: right; margin-top: 55px; }
 .navigation ul { list-style-type: none; padding: 0; margin: 0 }
@@ -50,10 +40,18 @@ html, body {
 }
 
 
-/*-----------------------------Banner------------------------------------*/
-.body { clear: both; }
-.banner { /*background: #408080; */ height: 320px; width: 100%; }
-.banner-signup { background: #408080; clear: both; width: 40%; }
+/*-----------------------------BANNER------------------------------------*/
+.banner-wrapper {
+	background: url('/assets/img/background.jpg');
+	background-size: 100% 280px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #000000;
+	border-top: 1px solid #6A6A6A;
+	border-bottom: 1px solid #272727;
+}
+.banner { height: 280px; margin: 0 auto; width: 960px; }
+.banner-signup { clear: both; float: left; width: 50%; }
 .banner-signup img { float: left; height: 150px; margin: 40px 0 0 20px; width: 150px; }
 .banner-signup .reg-ministry { float: left; margin: 50px 0 0 10px; }
 .banner-signup .reg-ministry h3 { color: #71b3d9; text-transform: uppercase; }
@@ -67,7 +65,7 @@ html, body {
 	text-transform: uppercase;
 }
 
-.banner .youth-ministry { float: right; margin-top: 40px; text-align: right; }
+.banner .youth-ministry { float: right; margin: 40px 20px 0 0; text-align: right; }
 .banner h2 { color: #71b3d9; margin-bottom: 0; text-transform: uppercase; }
 .banner p { color: #fff; font-size: 14px; width: 400px; }
 .banner a {
@@ -79,3 +77,31 @@ html, body {
 	text-decoration: none;
 	text-transform: uppercase;
 }
+
+/*-----------------------------CONTENT------------------------------------*/
+.content { overflow: hidden; margin: 0 auto; width: 960px; }
+.content-wrapper { border-top: 1px solid #6A6A6A; }
+.content .main {
+	/*background: #408080;*/
+	float: left;
+	height: 500px;
+	width: 635px;
+}
+.content .sidebar {
+	/*background: #808040;*/
+	float: left;
+	height: 500px;
+	margin-left: 15px;
+	width: 310px;
+}
+
+/*MAIN*/
+.main .excerpt { /*background: #C0C0C0;*/ float: left; height: 300px; width: 310px; }
+.main .where { /*background: #008040;*/ float: left; height: 300px; margin-left: 15px; width: 310px; }
+.excerpt-temp, .where-temp { margin: 20px; text-align: center; }
+
+/*SIDEBAR*/
+.sidebar .updates { margin: 20px; }
+.sidebar .updates ul { list-style-type: none; padding-left: 0; }
+.sidebar .updates ul li { margin-top: 20px; }
+.sidebar .updates ul li .view { margin-left: 200px; }

@@ -1,0 +1,51 @@
+<div class="container events-create">
+	<section class="header">
+		<h1>Ministry of <?php echo $ministry['ministry_name'] ?></h1>
+	</section><br>
+	<section class="content">
+		<div class="row">
+			<?php include(dirname(__FILE__).'../../../_sidebar.phtml'); ?>
+			<section class="col-lg-9 main">
+				<div class="panel panel-primary">
+					<div class="panel-heading clearfix">
+						<span>Create Event</span>
+						<a href="/ministry/detail/event/<?php echo $ministry['ministry_id']; ?>" 
+							class="btn btn-success btn-sm pull-right">Back to List</a>
+					</div>
+					<div class="panel-body">
+						<form action="" method="post" class="form-horizontal" role="form">
+							<div class="form-group">
+								<label for="inputTitle" class="col-lg-2 control-label">Title</label>
+								<div class="col-lg-8"><input type="text" name="title" 
+									class="form-control" id="inputTitle" placeholder="Title"></div>
+							</div>
+							<div class="form-group">
+								<label for="inputDetail" class="col-lg-2 control-label">Detail</label>
+								<div class="col-lg-8">
+									<textarea name="detail" class="form-control" id="inputDetail" placeholder="Detail"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-1">
+									<div class="radio">
+										<label><input type="radio" name="active" value="1"> Active</label>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="radio">
+										<label><input type="radio" name="active" value="0"> Not Active</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<input type="submit" class="btn btn-success" name="create_event" value="Submit">
+							    </div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>

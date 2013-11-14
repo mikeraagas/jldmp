@@ -6,16 +6,16 @@
 /**
  * Default logic to output a page
  */
-class Back_Page_Ministry_Detail extends Back_Page {
+class Back_Page_Ministry_Member_Create extends Back_Page {
 	/* Constants
 	-------------------------------*/
 	/* Public Properties
 	-------------------------------*/
 	/* Protected Properties
 	-------------------------------*/
-	protected $_title = 'Eden';
-	protected $_class = 'home';
-	protected $_template = '/ministry/detail.phtml';
+	protected $_title = 'JLDMP - Create Member';
+	protected $_class = 'ministry-member-create';
+	protected $_template = '/ministry/member/create.phtml';
 	
 	/* Private Properties
 	-------------------------------*/
@@ -24,8 +24,7 @@ class Back_Page_Ministry_Detail extends Back_Page {
 	/* Public Methods
 	-------------------------------*/
 	public function render() {
-		$section = back()->registry()->get('request', 'variables', 0);
-		$id = back()->registry()->get('request', 'variables', 1);
+		$id = back()->registry()->get('request', 'variables', 0);
 
 		$ministry = $this->_db->search()
 			->setTable('ministry')
@@ -33,23 +32,25 @@ class Back_Page_Ministry_Detail extends Back_Page {
 			->filterByMinistryId($id)
 			->getRow();
 
-		$members = $this->_db->search()
-			->setTable('member')
-			->setColumns('*')
-			->filterByMemberMinistry($id)
-			->getRows();
+		if (isset($_POST['create_member'])) {
+			$member = array(
+				'member_ministry' 	=> $id,
+				'member_first' 		=> $_POST['first_name'],
+				'member_last' 		=> $_POST['last_name'],
+				'member_email' 		=> $_POST['email'],
+				'member_address' 	=> $_POST['address'],
+				'member_phone' 		=> $_POST['phone'],
+				'member_age' 		=> $_POST['age']);
 
-		$events = $this->_db->search()
-			->setTable('event')
-			->setColumns('*')
-			->filterByEventMinistry($id)
-			->getRows();
+			$this->_db->model($member)->save('member');
+
+			header('Location: /ministry/detail/members/'.$id);
+			exit;
+		}
 
 		$this->_body = array(
-			'section' 	=> $section,
 			'ministry' 	=> $ministry,
-			'members' 	=> $members,
-			'events' 	=> $events);
+			'section' 	=> 'members');
 
 		return $this->_page();
 	}

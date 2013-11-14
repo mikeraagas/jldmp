@@ -6,7 +6,7 @@
 /**
  * Default logic to output a page
  */
-class Back_Page_Ministry_Detail extends Back_Page {
+class Back_Page_Ministry_Update extends Back_Page {
 	/* Constants
 	-------------------------------*/
 	/* Public Properties
@@ -14,9 +14,10 @@ class Back_Page_Ministry_Detail extends Back_Page {
 	/* Protected Properties
 	-------------------------------*/
 	protected $_title = 'Eden';
-	protected $_class = 'home';
-	protected $_template = '/ministry/detail.phtml';
-	
+	protected $_class = 'ministry';
+	protected $_template = '/ministry/update.phtml';
+	protected $_message = '';
+
 	/* Private Properties
 	-------------------------------*/
 	/* Magic
@@ -24,8 +25,7 @@ class Back_Page_Ministry_Detail extends Back_Page {
 	/* Public Methods
 	-------------------------------*/
 	public function render() {
-		$section = back()->registry()->get('request', 'variables', 0);
-		$id = back()->registry()->get('request', 'variables', 1);
+		$id = back()->registry()->get('request', 'variables', 0);
 
 		$ministry = $this->_db->search()
 			->setTable('ministry')
@@ -33,23 +33,23 @@ class Back_Page_Ministry_Detail extends Back_Page {
 			->filterByMinistryId($id)
 			->getRow();
 
-		$members = $this->_db->search()
-			->setTable('member')
-			->setColumns('*')
-			->filterByMemberMinistry($id)
-			->getRows();
+		if (isset($_POST['update'])) {
+			$id 		 = $_POST['id'];
+			$name 		 = $_POST['name'];
+			$description = $_POST['description'];
 
-		$events = $this->_db->search()
-			->setTable('event')
-			->setColumns('*')
-			->filterByEventMinistry($id)
-			->getRows();
+			$settings = array(
+				'ministry_name' 	=> $name,
+				'ministry_excerpt' 	=> $description);
 
-		$this->_body = array(
-			'section' 	=> $section,
-			'ministry' 	=> $ministry,
-			'members' 	=> $members,
-			'events' 	=> $events);
+			$filter[] = array('ministry_id=%s', $id);
+
+			$this->_db->updateRows('ministry', $settings, $filter);
+			header('Location: /ministry/update/'.$id);
+			exit;
+		}
+
+		$this->_body = array('ministry' => $ministry);
 
 		return $this->_page();
 	}

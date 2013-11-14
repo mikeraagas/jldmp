@@ -1,0 +1,55 @@
+<div class="container member-create">
+	<section class="header">
+		<h1>Ministry of <?php echo $ministry['ministry_name'] ?></h1>
+	</section><br>
+	<section class="content">
+		<div class="row">
+			<?php include(dirname(__FILE__).'../../../_sidebar.phtml'); ?>
+			<section class="col-lg-9 main">
+				<div class="panel panel-primary">
+					<div class="panel-heading clearfix">
+						<span>Create Member</span>
+						<a href="/ministry/detail/members/<?php echo $ministry['ministry_id']; ?>" 
+							class="btn btn-success btn-sm pull-right">Back to List</a>
+					</div>
+					<div class="panel-body">
+						<form action="" method="post" class="form-horizontal" role="form">
+							<div class="form-group">
+								<label for="inputName" class="col-lg-2 control-label">Name</label>
+								<div class="col-lg-4"><input type="text" name="first_name" 
+									class="form-control" id="inputName" placeholder="First Name"></div>
+								<div class="col-lg-4"><input type="text" name="last_name" 
+									class="form-control" placeholder="Last Name"></div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail" class="col-lg-2 control-label">Email</label>
+								<div class="col-lg-8"><input type="text" name="email" 
+									class="form-control" id="inputEmail" placeholder="Email"></div>
+							</div>
+							<div class="form-group">
+								<label for="inputAddress" class="col-lg-2 control-label">Address</label>
+								<div class="col-lg-8"><input type="text" name="address" 
+									class="form-control" id="inputAddress" placeholder="Address"></div>
+							</div>
+							<div class="form-group">
+								<label for="inputPhone" class="col-lg-2 control-label">Phone</label>
+								<div class="col-lg-8"><input type="text" name="phone" 
+									class="form-control" id="inputPhone" placeholder="Phone"></div>
+							</div>
+							<div class="form-group">
+								<label for="inputAge" class="col-lg-2 control-label">Age</label>
+								<div class="col-lg-2"><input type="text" name="age" 
+									class="form-control" id="inputAge" placeholder="Age"></div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<input type="submit" class="btn btn-success" name="create_member" value="Submit">
+							    </div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
